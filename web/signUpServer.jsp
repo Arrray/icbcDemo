@@ -13,7 +13,7 @@
 <body>
 <%
     String uname=request.getParameter("username");
-    String pwd=request.getParameter("password");
+    String pwd=request.getParameter("pwd");
     String age=request.getParameter("age");
     String IDcard=request.getParameter("IDcard");
     String sex=request.getParameter("sex");
@@ -33,7 +33,7 @@
     Class.forName("com.mysql.jdbc.Driver");
 
     //1.连接数据库，提供 确定数据库地址  用户名，密码,连接类Connection
-    String url="jdbc:mysql://localhost:3306/account?user=root&password= &unicode=true&characterEncoding=UTF-8";
+    String url="jdbc:mysql://localhost:3306/account?username=root&password= &unicode=true&characterEncoding=UTF-8";
     String username="root";
     String password="";
     Connection con=DriverManager.getConnection(url,username,password);

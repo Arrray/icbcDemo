@@ -16,6 +16,12 @@
         <td>用户id</td>
         <td>用户名称</td>
         <td>用户密码</td>
+        <td>用户密码</td>
+        <td>身份证号</td>
+        <td>用户性别</td>
+        <td>手机号码</td>
+        <td>用户城市</td>
+        <td>用户地址</td>
         <td>用户权限</td>
     </tr>
     <%
@@ -23,7 +29,7 @@
         Class.forName("com.mysql.jdbc.Driver");
 
         //1.连接数据库，提供 确定数据库地址  用户名，密码,连接类Connection
-        String url="jdbc:mysql://localhost:3306/account";
+        String url="jdbc:mysql://localhost:3306/account?username=root&password= &unicode=true&characterEncoding=UTF-8";
         String username="root";
         String password="";
         Connection con=DriverManager.getConnection(url,username,password);
@@ -56,12 +62,18 @@
 
         while(rs!=null&&rs.next()) //判断有没有下一条记录
         {
-            int id=rs.getInt("aid");
+            int id=rs.getInt("id");
             String uname= rs.getString("uname");
             String pwd= rs.getString("pwd");
-            String uright= rs.getString("uright");
+            String age= rs.getString("age");
+            String IDcard= rs.getString("IDcard");
+            String sex= rs.getString("sex");
+            String tell= rs.getString("tell");
+            String city= rs.getString("city");
+            String address= rs.getString("address");
+            String rid= rs.getString("rid");
             // out.println(id+","+name+","+pwd+","+rid);
-            out.println("<tr><td>"+id+"</td><td>"+uname+"</td><td>"+pwd+"</td><td>"+uright+"</td></tr>");
+            out.println("<tr><td>"+id+"</td><td>"+uname+"</td><td>"+pwd+"</td><td>"+age+"</td><td>"+IDcard+"</td><td>"+sex+"</td><td>"+tell+"</td><td>"+city+"</td><td>"+address+"</td><td>"+rid+"</td></tr>");
         }
 
         //5.关闭

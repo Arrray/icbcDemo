@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         Class.forName("com.mysql.jdbc.Driver");
         
         //1.连接数据库，提供 确定数据库地址  用户名，密码,连接类Connection
-        String url="jdbc:mysql://localhost:3306/account?user=root&password= &unicode=true&characterEncoding=UTF-8";
+        String url="jdbc:mysql://localhost:3306/account?username=root&password= &unicode=true&characterEncoding=UTF-8";
         String username="root";
         String password="";
         Connection con=DriverManager.getConnection(url,username,password);
@@ -44,13 +44,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
        while(rs!=null&&rs.next()) //判断有没有下一条记录
         {
-           int id=rs.getInt("aid");
-           String name= rs.getString("uname");
+            int id=rs.getInt("aid");
+            String name= rs.getString("uname");
             String pwd= rs.getString("pwd");
+            String age= rs.getString("age");
+            String IDcard= rs.getString("IDcard");
+            String sex= rs.getString("sex");
+            String tell= rs.getString("tell");
+            String city= rs.getString("city");
+            String address= rs.getString("address");
             int rid= rs.getInt("rid");
-            String uname=rs.getString("uname");
+
            // out.println(id+","+name+","+psd+","+rid);
-           out.println("<tr><td>"+id+"</td><td>"+name+"</td><td>***</td><td>"+uname+"</td></tr>");
+            out.println("<tr><td>"+id+"</td><td>"+name+"</td><td>***</td><td>"+pwd+"</td></tr>");
         }
         
         //5.关闭

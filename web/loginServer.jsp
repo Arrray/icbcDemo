@@ -25,7 +25,7 @@
     Class.forName("com.mysql.jdbc.Driver");
 
     //1.连接数据库，提供 确定数据库地址  用户名，密码,连接类Connection
-    String url="jdbc:mysql://localhost:3306/account?user=root&password= &unicode=true&characterEncoding=UTF-8";
+    String url="jdbc:mysql://localhost:3306/account?username=root&password= &unicode=true&characterEncoding=UTF-8";
     String username="root";
     String password="";
     Connection con=DriverManager.getConnection(url,username,password);
@@ -39,20 +39,26 @@
     if(rs!=null&&rs.next())//登录成功
     {
         //获取登录者的用户信息
-        int aid=rs.getInt("aid");
-        String uname = rs.getString("uname");
-        String pwd =rs.getString("pwd");
+        int aid=rs.getInt("id");
+        String rname = rs.getString("uname");
+        String rpwd = rs.getString("pwd");
         int rid= rs.getInt("rid");
-        Account account=new Account(aid,uname,pwd,rid);
+        Account account=new Account(aid,rname,rpwd,rid);
         //把登录的用户信息存放在会话对象session中，这样的话用户信息在任何一个页面都可以通过会话对象session去获取
         session.setAttribute("account",account);
-
-        out.println(uname+"登录成功,进入<a href='index.jsp'>中心页面</a>");
+        if(rid==0){
+            out.println(rname+"登录成功,进入<a href='./user/userIndex.jsp'>中心页面</a>");
+        }else if(rid==1){
+            out.println(rname+"登录成功,进入<a href='./staff/staffIndex.jsp'>中心页面</a>");
+        }else if (rid==2){
+        out.println(rname+"登录成功,进入<a href='./manager/managerIndex.jsp'>中心页面</a>");
+        }
+//        out.println(rname+"登录成功,进入<a href='../user/userIndex.jsp'>中心页面</a>");
     }
     else
     {
-        out.println("登录失败，5秒自动跳到登录页面，或者点击<a href='Login.jsp'>登录</a>");
-        response.setHeader("refresh", "5;URL=Login.jsp");
+        out.println("登录失败，5秒自动跳到登录页面，或者点击<a href='login.jsp'>登录</a>");
+        response.setHeader("refresh", "5;URL=login.jsp");
     }
 
     //5.关闭

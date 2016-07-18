@@ -23,16 +23,14 @@
         }
     </style>
 </head>
-
 <body>
 <div class="content">
     <form action="loginServer.jsp">
-        用户名:<input type="text" name="uname"><br>
-        密码:<input type="password" name="pwd"><br>
+        用户姓名:<input type="text" name="username"><br><br>
+        用户密码:<input type="password" name="password"><br><br>
         <input type="submit" value="登录">
     </form>
+    没有账号，<a href="signUp.jsp">点我注册</a>
 </div>
-
-<a href="selAccount.jsp">查询用户</a>
 </body>
 </html>

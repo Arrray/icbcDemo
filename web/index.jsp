@@ -17,16 +17,16 @@
   </head>
   <body>
   <% Account account=(Account)session.getAttribute("account");
-    out.println(account.getAid()+"/"+account.getUname()+"/"+account.getRid()+"<br><hr>");
+    out.println(account.getAid()+"/"+account.getAname()+"/"+account.getRid()+"<br><hr>");
 
-    String sql="select rf.*,f.* from rolefun rf left join fun f on rf.fid=f.fid where rid="+account.getRid();
+    String sql="select account.*,manager.* from rolefun account left join fun manager on account.fid=manager.fid where rid="+account.getRid();
 
 
     //加载驱动，安装驱动管理器DriverManager
     Class.forName("com.mysql.jdbc.Driver");
 
     //1.连接数据库，提供 确定数据库地址  用户名，密码,连接类Connection
-    String url="jdbc:mysql://localhost:3306/account?user=root&password= &unicode=true&characterEncoding=UTF-8";
+    String url="jdbc:mysql://localhost:3306/account?username=root&password= &unicode=true&characterEncoding=UTF-8";
     String username="root";
     String password="";
     Connection con=DriverManager.getConnection(url,username,password);
@@ -50,5 +50,6 @@
     if(con!=null)con.close();
 
   %>
+
   </body>
 </html>
